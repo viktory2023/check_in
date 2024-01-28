@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("citezenship")
+@RequestMapping("citizenship")
 public class citezenshipController {
     private final Icitizenship icitizenship;
 

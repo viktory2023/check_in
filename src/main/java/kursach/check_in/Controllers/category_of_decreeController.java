@@ -3,18 +3,17 @@ package kursach.check_in.Controllers;
 import kursach.check_in.Models.category_of_decree;
 import kursach.check_in.Models.rooms;
 import kursach.check_in.Repo.Icategory_of_decree;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("")
+@RequiredArgsConstructor
+@RequestMapping("category_of_decree")
 public class category_of_decreeController {
     private final Icategory_of_decree icategoryOfDecree;
 
-    public category_of_decreeController(Icategory_of_decree icategoryOfDecree) {
-        this.icategoryOfDecree = icategoryOfDecree;
-    }
     @GetMapping
     public String all (Model model){
         Iterable<category_of_decree> categoryOfDecreeIterable = icategoryOfDecree.findAll();
