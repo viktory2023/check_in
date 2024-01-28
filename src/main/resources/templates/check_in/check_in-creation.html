@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check_in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<header>
+    <a class="logo">Заселение</a>
+    <nav>
+        <ul class="topmenu">
+            <li><a th:href="@{/people}" class="submenu-link">Люди</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/citizenship}">Гражданство</a></li>
+                    <li><a th:href="@{/category}">Категории</a></li>
+                </ul>
+            </li>
+            <li><a th:href="@{/check_in}" class="submenu-link">Заселение</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/check_in_people}">Заселение людей</a></li>
+                    <li><a th:href="@{/rooms_check_in}">Комнаты для заселения</a></li>
+                </ul>
+            </li>
+            <li><a th:href="@{/decree}" class="submenu-link">Приказы</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/category_of_decree}">Категории приказов</a></li>
+                </ul>
+            </li>
+            <li><a th:href="@{/order}" class="submenu-link">Ордер</a></li>
+            <li><a th:href="@{/building}" class="submenu-link">Здания</a></li>
+            <li><a th:href="@{/rooms}" class="submenu-link">Комнаты</a></li>
+        </ul>
+    </nav>
+</header>
+<form class="failes_list" method="post" th:action="@{/check_in/{id_check_in}(id_check_in=${check_in.id_check_in})}">
+    <input type="date" name="check_in_date" placeholder="Дата заезда" th:value="${check_in.check_in_date}" required>
+    <input type="date" name="check_out_date" placeholder="Дата выезда" th:value="${check_in.check_out_date}" required>
+    <input type="number" name="id_order" placeholder="Идентификатор ордера" th:value="${check_in.order.getId_order()}" required>
+    <button type="submit" class="button-17" role="button">Сохранить</button>
+</form>
+</body>
+</html>

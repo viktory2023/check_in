@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AirLine</title>
+    <title>citizenship</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <a class="logo">Заселение</a>
+    <a class="logo">Гражданство</a>
     <nav>
         <ul class="topmenu">
             <li><a th:href="@{/people}" class="submenu-link">Люди</a>
@@ -37,3 +37,11 @@
         </ul>
     </nav>
 </header>
+<form class="failes_list" method="post" th:action="@{/citizenship/{id_citizenship}(id_citizenship=${citizenship.id_citizenship})}">
+    <input type="number" name="country" placeholder="Страна" th:value="${citizenship.country}" required>
+    <input type="number" name="type_of_citizenship" placeholder="Вид гражданства" th:value="${citizenship.type_of_citizenship}" required>
+    <input type="number" name="registration_address" placeholder="Адрес регистрации" th:value="${citizenship.registration_address}" required>
+    <button type="submit" class="button-17" role="button">Сохранить</button>
+</form>
+</body>
+</html>

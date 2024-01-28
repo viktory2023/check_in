@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AirLine</title>
+    <title>Rooms</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <a class="logo">Заселение</a>
+    <a class="logo">Комнаты</a>
     <nav>
         <ul class="topmenu">
             <li><a th:href="@{/people}" class="submenu-link">Люди</a>
@@ -37,3 +37,37 @@
         </ul>
     </nav>
 </header>
+<form class="failes_list" method="post" action="citizenship/add">
+    <input type="number" name="country" placeholder="Страна" required>
+    <input type="number" name="type_of_citizenship" placeholder="Вид регистрации" required>
+    <input type="number" name="registration_address" placeholder="Адрес регистрации" required>
+    <button type="submit" class="button-17" role="button">Добавить</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Страна</th>
+        <th>Вид</th>
+        <th>Адрес</th>
+    </tr>
+    <tbody>
+    <tr th:each="citizenship : ${citizenshipIterable}">
+        <td th:text="${citizenship.id_citizenship}"></td>
+        <td th:text="${citizenship.country}"></td>
+        <td th:text="${citizenship.type_of_citizenship}"></td>
+        <td th:text="${citizenship.registration_address}"></td>
+        <td>
+            <form th:action="@{'/citizenship/delete/' + ${citizenship.id_citizenship}}" method="post">
+                <button type ="submit" class="button-17" role="button">Удалить</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{'/citizenship/' + ${citizenship.id_citizenship}}">
+                <button type="submit" class="button-17">Редактировать</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

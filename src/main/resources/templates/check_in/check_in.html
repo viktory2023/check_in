@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AirLine</title>
+    <title>Check_in</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -37,3 +37,37 @@
         </ul>
     </nav>
 </header>
+<form class="failes_list" method="post" action="check_in/add">
+    <input type="date" name="check_in_date" placeholder="Дата заезда" required>
+    <input type="date" name="check_out_date" placeholder="Дата выезда" required>
+    <input type="number" name="id_order" placeholder="Идентификатор ордера" required>
+    <button type="submit" class="button-17" role="button">Добавить</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Заезд</th>
+        <th>Выезд</th>
+        <th>Ордер</th>
+    </tr>
+    <tbody>
+    <tr th:each="check_in : ${checkInIterable}">
+        <td th:text="${check_in.id_check_in}"></td>
+        <td th:text="${check_in.check_in_date}"></td>
+        <td th:text="${check_in.check_out_date}"></td>
+        <td th:text="${check_in.order.getId_order()}"></td>
+        <td>
+            <form th:action="@{'/check_in/delete/' + ${check_in.id_check_in}}" method="post">
+                <button type ="submit" class="button-17" role="button">Удалить</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{'/check_in/' + ${check_in.id_check_in}}">
+                <button type="submit" class="button-17">Редактировать</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

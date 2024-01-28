@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Категория приказов</title>
+    <title>Decree</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <a class="logo">Категория приказов</a>
+    <a class="logo">Приказы</a>
     <nav>
         <ul class="topmenu">
             <li><a th:href="@{/people}" class="submenu-link">Люди</a>
@@ -37,25 +37,32 @@
         </ul>
     </nav>
 </header>
-<div class="failes_list">
-    <input type="number" name="name_category" placeholder="Наименование" required>
-</div>
+<form class="failes_list" method="post" action="order/add">
+    <input type="number" name="room_number" placeholder="Номер комнаты" required>
+    <input type="number" name="order_number" placeholder="Номер ордера" required>
+    <input type="number" name="id_decree" placeholder="Идентификатор приказа" required>
+    <button type="submit" class="button-17" role="button">Добавить</button>
+</form>
 <table>
     <tr>
         <th>ID</th>
-        <th>Наименование</th>
+        <th>Комната</th>
+        <th>Ордер</th>
+        <th>Приказ</th>
     </tr>
     <tbody>
-    <tr th:each="category_of_decree : ${category_of_decree}">
-        <td th:text="${category_of_decree.id_category"></td>
-        <td th:text="${category_of_decree.name_category"></td>
+    <tr th:each="order : ${orderIterable}">
+        <td th:text="${order.id_order}"></td>
+        <td th:text="${order.room_number}"></td>
+        <td th:text="${order.order_number}"></td>
+        <td th:text="${order.decree.getId_decree()}"></td>
         <td>
-            <form th:action="@{/category_of_decree/delete/{id_category} (category_of_decree=${rooms.id_category})}" method="post">
+            <form th:action="@{'/order/delete/' + ${order.id_order}}" method="post">
                 <button type ="submit" class="button-17" role="button">Удалить</button>
             </form>
         </td>
         <td>
-            <form th:action="@{'/category_of_decree/' + ${category_of_decree.id_category}}">
+            <form th:action="@{'/order/' + ${order.id_order}}">
                 <button type="submit" class="button-17">Редактировать</button>
             </form>
         </td>

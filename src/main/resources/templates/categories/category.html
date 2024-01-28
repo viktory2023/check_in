@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AirLine</title>
+    <title>Categories</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <a class="logo">Заселение</a>
+    <a class="logo">Категории граждан</a>
     <nav>
         <ul class="topmenu">
             <li><a th:href="@{/people}" class="submenu-link">Люди</a>
@@ -37,3 +37,30 @@
         </ul>
     </nav>
 </header>
+<form class="failes_list" method="post" action="category/add">
+    <input type="number" name="name_category" placeholder="Наименование категории" required>
+    <button type="submit" class="button-17" role="button">Добавить</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Наименование</th>
+    </tr>
+    <tbody>
+    <tr th:each="category : ${categoryIterable}">
+        <td th:text="${category.id_category}"></td>
+        <td th:text="${category.name_category}"></td>
+            <form th:action="@{'/category/delete/' + ${category.id_category}}" method="post">
+                <button type ="submit" class="button-17" role="button">Удалить</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{'/category/' + ${category.id_category}}">
+                <button type="submit" class="button-17">Редактировать</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

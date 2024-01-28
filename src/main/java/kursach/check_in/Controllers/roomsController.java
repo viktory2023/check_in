@@ -1,8 +1,7 @@
 package kursach.check_in.Controllers;
 
-import kursach.check_in.Models.rooms;
-import kursach.check_in.Repo.Ibuilding;
-import kursach.check_in.Repo.Irooms;
+import kursach.check_in.Models.*;
+import kursach.check_in.Repo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class roomsController {
     private final Irooms irooms;
     private final Ibuilding ibuilding;
+
+    public roomsController(Irooms irooms, Ibuilding ibuilding) {
+        this.irooms = irooms;
+        this.ibuilding = ibuilding;
+    }
 
     @GetMapping
     public  String all(Model model){

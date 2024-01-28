@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Decree</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<header>
+    <a class="logo">Приказы</a>
+    <nav>
+        <ul class="topmenu">
+            <li><a th:href="@{/people}" class="submenu-link">Люди</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/citizenship}">Гражданство</a></li>
+                    <li><a th:href="@{/category}">Категории</a></li>
+                </ul>
+            </li>
+            <li><a th:href="@{/check_in}" class="submenu-link">Заселение</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/check_in_people}">Заселение людей</a></li>
+                    <li><a th:href="@{/rooms_check_in}">Комнаты для заселения</a></li>
+                </ul>
+            </li>
+            <li><a th:href="@{/decree}" class="submenu-link">Приказы</a>
+                <ul class="submenu">
+                    <li><a th:href="@{/category_of_decree}">Категории приказов</a></li>
+                </ul>
+            </li>
+            <li><a th:href="@{/order}" class="submenu-link">Ордер</a></li>
+            <li><a th:href="@{/building}" class="submenu-link">Здания</a></li>
+            <li><a th:href="@{/rooms}" class="submenu-link">Комнаты</a></li>
+        </ul>
+    </nav>
+</header>
+<form class="failes_list" method="post" action="decree/add">
+    <input type="number" name="name_decree" placeholder="Наименование приказа" required>
+    <input type="number" name="date_of_formation" placeholder="Дата формирования" required>
+    <input type="number" name="id_category" placeholder="Идентификатор категории" required>
+    <button type="submit" class="button-17" role="button">Добавить</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Наименование</th>
+        <th>Дата</th>
+        <th>Категория</th>
+    </tr>
+    <tbody>
+    <tr th:each="decree : ${decreeIterable}">
+        <td th:text="${decree.id_decree}"></td>
+        <td th:text="${decree.name_decree}"></td>
+        <td th:text="${decree.date_of_formation}"></td>
+        <td th:text="${decree.category.getId_category()}"></td>
+        <td>
+            <form th:action="@{'/decree/delete/' + ${decree.id_decree}}" method="post">
+                <button type ="submit" class="button-17" role="button">Удалить</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{'/decree/' + ${decree.id_decree}}">
+                <button type="submit" class="button-17">Редактировать</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

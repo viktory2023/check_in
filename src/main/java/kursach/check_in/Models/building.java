@@ -10,18 +10,18 @@ import java.util.Collection;
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Table(name = "building")
 public class building {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_building;
-    @NotNull
+    @NonNull
     private String name_street;
-    @NotNull
+    @NonNull
     private int house_number;
-    @NotNull
+    @NonNull
     private int case_number;
     @OneToMany
     @JoinColumn(name = "id_building")

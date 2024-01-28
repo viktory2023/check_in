@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AirLine</title>
+    <title>People</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-    <a class="logo">Заселение</a>
+    <a class="logo">Люди</a>
     <nav>
         <ul class="topmenu">
             <li><a th:href="@{/people}" class="submenu-link">Люди</a>
@@ -37,3 +37,16 @@
         </ul>
     </nav>
 </header>
+<form class="failes_list" method="post" th:action="@{/people/{id_people}(id_people=${people.id_people})}">
+    <input type="number" name="passport_data" placeholder="Паспортные данные" th:value="${people.passport_data}" required>
+    <input type="number" name="surname" placeholder="Фамилия" th:value="${people.surname}" required>
+    <input type="number" name="name" placeholder="Имя" th:value="${people.name}" required>
+    <input type="number" name="patronymic" placeholder="Отчество" th:value="${people.patronymic}" required>
+    <input type="number" name="gender" placeholder="Пол" th:value="${people.gender}" required>
+    <input type="number" name="age" placeholder="Возраст" th:value="${people.age}" required>
+    <input type="number" name="id_category" placeholder="Идентификатор категории" th:value="${people.category.getId_category()}" required>
+    <input type="number" name="id_citizenship" placeholder="Идентификатор гражданства" th:value="${people.citizenship.getId_citizenship()}" required>
+    <button type="submit" class="button-17" role="button">Сохранить</button>
+</form>
+</body>
+</html>
