@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("citezenship")
 public class citezenshipController {
     private final Icitizenship icitizenship;
-    public categoryController (Icitizenship icitizenship){
-        this.icitizenship = icitizenship;
-    }
 
     @GetMapping
     public  String all(Model model){
@@ -52,9 +49,9 @@ public class citezenshipController {
                          @RequestParam String type_of_citizenship,
                          @RequestParam String registration_address) {
         citizenship citizenship = icitizenship.findById(id_citizenship).orElseThrow();
-        rooms.setCountry(country);
-        rooms.setType_of_citizenship(type_of_citizenship);
-        rooms.setRegistration_address(registration_address);
+        citizenship.setCountry(country);
+        citizenship.setType_of_citizenship(type_of_citizenship);
+        citizenship.setRegistration_address(registration_address);
         icitizenship.save(citizenship);
         return "redirect:/citizenship";
     }

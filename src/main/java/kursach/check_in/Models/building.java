@@ -25,6 +25,5 @@ public class building {
     private int case_number;
     @OneToMany
     @JoinColumn(name = "id_building")
-    @NonNull
     private Collection<rooms> rooms;
 }

@@ -15,10 +15,6 @@ import java.time.LocalDate;
 public class decreeController {
     private final Idecree idecree;
     private final Icategory_of_decree icategory_of_decree;
-    public decreeController (Idecree idecree, Icategory_of_decree icategory_of_decree){
-        this.idecree = idecree;
-        this.icategory_of_decree = icategory_of_decree;
-    }
 
     @GetMapping
     public  String all(Model model){
@@ -55,9 +51,9 @@ public class decreeController {
                          @RequestParam LocalDate date_of_formation,
                          @RequestParam Long id_category) {
         decree decree = idecree.findById(id_decree).orElseThrow();
-        rooms.setName_decree(name_decree);
-        rooms.setDate_of_formation(date_of_formation);
-        rooms.setCategory(icategory.findById(id_category).orElseThrow());
+        decree.setName_decree(name_decree);
+        decree.setDate_of_formation(date_of_formation);
+        decree.setCategory(icategory_of_decree.findById(id_category).orElseThrow());
         idecree.save(decree);
         return "redirect:/decree";
     }

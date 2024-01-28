@@ -15,11 +15,6 @@ public class roomsController {
     private final Irooms irooms;
     private final Ibuilding ibuilding;
 
-    public roomsController(Irooms irooms, Ibuilding ibuilding) {
-        this.irooms = irooms;
-        this.ibuilding = ibuilding;
-    }
-
     @GetMapping
     public  String all(Model model){
         Iterable<rooms> roomsIterable = irooms.findAll();

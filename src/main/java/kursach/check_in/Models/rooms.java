@@ -3,6 +3,7 @@ package kursach.check_in.Models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collection;
 
 
 @Entity

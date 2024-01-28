@@ -16,12 +16,6 @@ public class peopleController {
     private final Icategory icategory;
     private final Icitizenship icitizenship;
 
-    public peopleController (Ipeople ipeople, Icategory icategory, Icitizenship icitizenship){
-        this.ipeople = ipeople;
-        this.icategory = icategory;
-        this.icitizenship = icitizenship;
-    }
-
     @GetMapping
     public  String all(Model model){
         Iterable<people> peopleIterable = ipeople.findAll();
@@ -44,7 +38,7 @@ public class peopleController {
                 patronymic,
                 gender,
                 age,
-                icategory.findById(id_category).orElseThrow()
+                icategory.findById(id_category).orElseThrow(),
                 icitizenship.findById(id_citizenship).orElseThrow());
         ipeople.save(people);
         return "redirect:/people";

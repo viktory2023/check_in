@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.*;
 public class orderController {
     private final Iorder iorder;
     private final Idecree idecree;
-    public orderController (Iorder iorder, Idecree idecree){
-        this.iorder = iorder;
-        this.idecree = idecree;
-    }
 
     @GetMapping
     public  String all(Model model){

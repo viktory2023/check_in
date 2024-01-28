@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("building")
 public class buildingController {
     private final Ibuilding ibuilding;
-    public buildingController (Ibuilding ibuilding) {
-        this.ibuilding = ibuilding;
-    }
+
     @GetMapping
     public  String all(Model model){
         Iterable<building> buildingIterable = ibuilding.findAll();

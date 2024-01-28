@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("category")
 public class categoryController {
     private final Icategory icategory;
-    public categoryController (Icategory icategory) {
-        this.icategory = icategory;
-    }
+
     @GetMapping
     public  String all(Model model){
         Iterable<category> categoryIterable = icategory.findAll();
@@ -23,15 +21,14 @@ public class categoryController {
     }
     @PostMapping("add")
     public String add(@RequestParam String name_category) {
-        category category = new rooms(
-                name_category);
+        category category = new category(name_category);
         icategory.save(category);
         return "redirect:/category";
     }
     @PostMapping("delete/{id_category}")
     public String delete(@PathVariable(value = "id_category") Long id_category) {
         category category = icategory.findById(id_category).orElseThrow();
-        category.delete(icategory);
+        icategory.delete(category);
         return "redirect:/category";
     }
     @GetMapping("{id_category}")
@@ -44,7 +41,7 @@ public class categoryController {
     public String update(@PathVariable(value = "id_category") Long id_category,
                          @RequestParam String name_category) {
         category category  = icategory.findById(id_category).orElseThrow();
-        rooms.setName_category(name_category);
+        category.setName_category(name_category);
         icategory.save(category);
         return "redirect:/category";
     }
